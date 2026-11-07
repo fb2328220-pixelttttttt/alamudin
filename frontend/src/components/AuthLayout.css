@@ -1,0 +1,182 @@
+/* Cosmic / nebula background */
+.auth-bg {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(180, 100, 20, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 150, 180, 0.3) 0%, transparent 45%),
+    radial-gradient(ellipse at 60% 80%, rgba(0, 120, 100, 0.25) 0%, transparent 45%),
+    radial-gradient(ellipse at 10% 80%, rgba(160, 80, 10, 0.3) 0%, transparent 40%),
+    linear-gradient(135deg, #0a0618 0%, #0d1a2e 40%, #091620 60%, #0a0618 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Starfield */
+.auth-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 80% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 65% 90%, rgba(0,200,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 95%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ── Allah glowing emblem ── */
+.allah-emblem-glow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+.allah-left  { left:  30px; order: 1; }
+.allah-right { right: 30px; order: 3; }
+
+/* Outer glow ring */
+.allah-emblem-outer {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    rgba(212, 160, 23, 0.9)  0%,
+    rgba(180, 120, 10, 0.75) 45%,
+    rgba(100, 60,  5, 0.4)   70%,
+    transparent              100%
+  );
+  box-shadow:
+    0 0 60px 30px rgba(212, 160, 23, 0.45),
+    0 0 120px 60px rgba(180, 110, 10, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inner solid ring */
+.allah-emblem-inner {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 200, 50, 0.8);
+  background: radial-gradient(circle at center,
+    #c8870a 0%,
+    #a86c08 50%,
+    #7a4e06 100%
+  );
+  box-shadow:
+    inset 0 0 20px rgba(0,0,0,0.4),
+    0 0 20px rgba(212, 160, 23, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.allah-emblem-inner span {
+  font-size: 2.6rem;
+  color: #fff8e0;
+  font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif;
+  text-shadow:
+    0 0 12px rgba(255, 230, 100, 0.9),
+    0 2px 4px rgba(0,0,0,0.6);
+  line-height: 1;
+}
+
+/* Glass card */
+.auth-card {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(180, 200, 220, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  padding: 24px 18px 22px;
+  box-sizing: border-box;
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  order: 2;
+}
+
+@media (min-width: 480px) {
+  .auth-card {
+    padding: 32px 36px 28px;
+  }
+}
+
+/* Page footer */
+.page-footer {
+  position: absolute;
+  bottom: 12px;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  font-family: 'Noto Sans Ethiopic', sans-serif;
+  letter-spacing: 0.02em;
+  z-index: 5;
+}
+
+/* ── Mobile: show smaller emblems above and below the card ── */
+@media (max-width: 700px) {
+  .auth-bg {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  }
+
+  /* Take emblems out of absolute positioning on mobile */
+  .allah-emblem-glow {
+    position: static;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+  }
+
+  .allah-left  { order: 1; }
+  .auth-card   { order: 2; }
+  .allah-right { order: 3; }
+
+  /* Make auth-card sit in normal flow */
+  .auth-card {
+    position: static;
+  }
+
+  /* Smaller emblems on mobile */
+  .allah-emblem-outer {
+    width: 90px;
+    height: 90px;
+    box-shadow:
+      0 0 35px 15px rgba(212, 160, 23, 0.4),
+      0 0 70px 30px rgba(180, 110, 10, 0.15);
+  }
+
+  .allah-emblem-inner {
+    width: 62px;
+    height: 62px;
+  }
+
+  .allah-emblem-inner span {
+    font-size: 1.6rem;
+  }
+
+  .auth-card { padding: 24px 18px 20px; }
+}
