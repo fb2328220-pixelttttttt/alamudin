@@ -12,6 +12,11 @@ const SubmissionSchema = new mongoose.Schema(
       required: [true, 'አድራሽ ያስፈልጋል'],
       trim: true,
     },
+    phoneNumber: {
+      type: String,
+      required: [true, 'ስልክ ቁጥር ያስፈልጋል'],
+      trim: true,
+    },
     accountNumber: {
       type: String,
       required: [true, 'የንግድ ባንክ አካዉንት ቁጥር ያስፈልጋል'],

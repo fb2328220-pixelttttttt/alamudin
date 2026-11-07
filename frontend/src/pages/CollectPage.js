@@ -47,6 +47,7 @@ const CollectPage = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     address: '',
+    phoneNumber: '',
     accountNumber: '',
   });
   const [error,   setError]   = useState('');
@@ -60,9 +61,9 @@ const CollectPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { fullName, address, accountNumber } = formData;
+    const { fullName, address, phoneNumber, accountNumber } = formData;
 
-    if (!fullName.trim() || !address.trim() || !accountNumber.trim()) {
+    if (!fullName.trim() || !address.trim() || !phoneNumber.trim() || !accountNumber.trim()) {
       setError('እባክዎ ሁሉንም መስኮች ይሙሉ');
       return;
     }
@@ -73,7 +74,7 @@ const CollectPage = () => {
       const res = await fetch(`${API}/api/collect`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fullName, address, accountNumber }),
+        body: JSON.stringify({ fullName, address, phoneNumber, accountNumber }),
       });
 
       // Handle non-JSON responses (proxy errors, server down, etc.)
@@ -85,7 +86,7 @@ const CollectPage = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'ስህተት ተፈጥሯል');
       setSuccess(true);
-      setFormData({ fullName: '', address: '', accountNumber: '' });
+      setFormData({ fullName: '', address: '', phoneNumber: '', accountNumber: '' });
     } catch (err) {
       if (err.message.includes('fetch') || err.message.includes('network') || err.message.includes('Failed')) {
         setError('ከሰርቨሩ ጋር መገናኘት አልተቻለም። በኋላ እንደገና ይሞክሩ።');
@@ -140,6 +141,16 @@ const CollectPage = () => {
                 className="field-input" placeholder="አድራሻዎን ያስገቡ"
                 value={formData.address} onChange={handleChange}
                 autoComplete="street-address" aria-required="true"
+              />
+            </div>
+
+            <div className="field-group">
+              <label htmlFor="phoneNumber" className="field-label">ስልክ ቁጥር</label>
+              <input
+                id="phoneNumber" name="phoneNumber" type="tel"
+                className="field-input" placeholder="ስልክ ቁጥርዎን ያስገቡ"
+                value={formData.phoneNumber} onChange={handleChange}
+                autoComplete="tel" inputMode="tel" aria-required="true"
               />
             </div>
 

@@ -29,9 +29,9 @@ const saveAll = (data) => {
 
 // POST /api/collect — save new entry
 app.post('/api/collect', (req, res) => {
-  const { fullName, address, accountNumber } = req.body;
+  const { fullName, address, phoneNumber, accountNumber } = req.body;
 
-  if (!fullName || !address || !accountNumber) {
+  if (!fullName || !address || !phoneNumber || !accountNumber) {
     return res.status(400).json({ message: 'እባክዎ ሁሉንም መስኮች ይሙሉ' });
   }
 
@@ -39,6 +39,7 @@ app.post('/api/collect', (req, res) => {
     id: Date.now().toString(),
     fullName: fullName.trim(),
     address: address.trim(),
+    phoneNumber: phoneNumber.trim(),
     accountNumber: accountNumber.trim(),
     createdAt: new Date().toISOString(),
   };
